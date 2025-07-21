@@ -1,0 +1,49 @@
+import pandas as pd
+df=pd.read_csv('/content/Book2.CSV')
+print(df)
+
+matched=df['cylinders']==5
+new_df=df[matched]
+print(new_df)
+
+a=df.groupby(['model year']).count()
+print(a)
+
+
+
+
+
+OUTPUT:
+mpg  cylinders  displacement  horsepower  weight  acceleration  model year  \
+0   18          8           307         130    3504          12.0          70   
+1   15          8           350         165    3693          11.5          70   
+2   18          8           318         150    3436          11.0          70   
+3   16          8           304         150    3433          12.0          70   
+4   17          8           302         140    3449          10.5          70   
+5   15          8           429         198    4341          10.0          70   
+6   14          8           454         220    4354           9.0          70   
+7   14          8           440         215    4312           8.5          70   
+8   14          8           455         225    4425          10.0          70   
+9   15          8           390         190    3850           8.5          70   
+
+   origin                   car name  
+0       1  chevrolet chevelle malibu  
+1       1          buick skylark 320  
+2       1         plymouth satellite  
+3       1              amc rebel sst  
+4       1                ford torino  
+5       1           ford galaxie 500  
+6       1           chevrolet impala  
+7       1          plymouth fury iii  
+8       1           pontiac catalina  
+9       1         amc ambassador dpl  
+Empty DataFrame
+Columns: [mpg, cylinders, displacement, horsepower, weight, acceleration, model year, origin, car name]
+Index: []
+            mpg  cylinders  displacement  horsepower  weight  acceleration  \
+model year                                                                   
+70           10         10            10          10      10            10   
+
+            origin  car name  
+model year                    
+70              10        10  

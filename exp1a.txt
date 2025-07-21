@@ -1,0 +1,123 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import matplotlib.cm as cm
+import numpy as np
+cars_df=pd.read_csv('/content/Cars93 (9).csv')
+print(cars_df)
+
+fig,ax=plt.subplots(2,3)
+fig.set_figwidth(10)
+fig.set_figheight(7)
+fig.suptitle("multiple box plots",fontsize=16)
+
+# Fix for boxplots: use boolean indexing to filter data for each category
+ax[0][0].boxplot(cars_df["Price"][cars_df["Type"]=="Compact"])
+ax[0][0].set_title("Compact")
+ax[0][1].boxplot(cars_df["Price"][cars_df["Type"]=="Large"])
+ax[0][1].set_title("Large")
+ax[0][2].boxplot(cars_df["Price"][cars_df["Type"]=="Midsize"])
+ax[0][2].set_title("Midsize")
+ax[1][0].boxplot(cars_df["Price"][cars_df["Type"]=="Small"])
+ax[1][0].set_title("Small")
+ax[1][1].boxplot(cars_df["Price"][cars_df["Type"]=="Sporty"])
+ax[1][1].set_title("Sporty")
+ax[1][2].boxplot(cars_df["Price"][cars_df["Type"]=="Van"])
+ax[1][2].set_title("Van")
+
+plt.tight_layout(rect=[0,0,1,0.96])
+plt.show()
+
+minvalue=np.min(cars_df["Price"])
+q1=np.percentile(cars_df["Price"],25)
+median=np.median(cars_df["Price"])
+q3=np.percentile(cars_df["Price"],75)
+maxvalue=np.max(cars_df["Price"])
+print("MinimumValue:",minvalue)
+print("Q1:",q1)
+print("Median:",median)
+print("Q3:",q3)
+print("MaximumValue:",maxvalue)
+
+plt.hist(cars_df['MPG.city'],color='black')
+plt.xlabel('MPG.city')
+plt.title('frequency distribution of MPG.city')
+plt.show()
+
+plt.scatter(cars_df["Weight"],cars_df["MPG.city"],color='black')
+plt.xlabel("Weight")
+plt.ylabel("MPG.city")
+plt.title("Weight vs MPG.city",fontsize=16)
+plt.show()
+
+plt.plot(cars_df["EngineSize"],cars_df["Horsepower"])
+plt.xlabel("EngineSize")
+plt.ylabel("Horsepower")
+plt.title('Line chart to observe the variations in "EngineSize" against "Horsepower"')
+plt.show()
+
+
+
+
+
+
+OUTPUT:
+  Id Manufacturer    Model     Type  Min.Price  Price  Max.Price  MPG.city  \
+0    1        Acura  Integra    Small       12.9   15.9       18.8        25   
+1    2        Acura   Legend  Midsize       29.2   33.9       38.7        18   
+2    3         Audi       90  Compact       25.9   29.1       32.3        20   
+3    4         Audi      100  Midsize       30.8   37.7       44.6        19   
+4    5          BMW     535i  Midsize       23.7   30.0       36.2        22   
+..  ..          ...      ...      ...        ...    ...        ...       ...   
+88  89   Volkswagen  Eurovan      Van       16.6   19.7       22.7        17   
+89  90   Volkswagen   Passat  Compact       17.6   20.0       22.4        21   
+90  91   Volkswagen  Corrado   Sporty       22.9   23.3       23.7        18   
+91  92        Volvo      240  Compact       21.8   22.7       23.5        21   
+92  93        Volvo      850  Midsize       24.8   26.7       28.5        20   
+
+    MPG.highway             AirBags  ... Passengers Length  Wheelbase  Width  \
+0            31                 NaN  ...          5    177        102     68   
+1            25  Driver & Passenger  ...          5    195        115     71   
+2            26         Driver only  ...          5    180        102     67   
+3            26                 NaN  ...          6    193        106     70   
+4            30         Driver only  ...          4    186        109     69   
+..          ...                 ...  ...        ...    ...        ...    ...   
+88           21                 NaN  ...          7    187        115     72   
+89           30                 NaN  ...          5    180        103     67   
+90           25                 NaN  ...          4    159         97     66   
+91           28         Driver only  ...          5    190        104     67   
+92           28  Driver & Passenger  ...          5    184        105     69   
+
+    Turn.circle  Rear.seat.room Luggage.room  Weight   Origin  \
+0            37            26.5         11.0    2705  non-USA   
+1            38            30.0         15.0    3560  non-USA   
+2            37            28.0         14.0    3375  non-USA   
+3            37            31.0         17.0    3405  non-USA   
+4            39            27.0         13.0    3640  non-USA   
+..          ...             ...          ...     ...      ...   
+88           38            34.0          NaN    3960  non-USA   
+89           35            31.5         14.0    2985  non-USA   
+90           36            26.0         15.0    2810  non-USA   
+91           37            29.5         14.0    2985  non-USA   
+92           38            30.0         15.0    3245  non-USA   
+
+                  Make  
+0        Acura Integra  
+1         Acura Legend  
+2              Audi 90  
+3             Audi 100  
+4             BMW 535i  
+..                 ...  
+88  Volkswagen Eurovan  
+89   Volkswagen Passat  
+90  Volkswagen Corrado  
+91           Volvo 240  
+92           Volvo 850  
+
+[93 rows x 28 columns]
+
+MinimumValue: 7.4
+Q1: 12.2
+Median: 17.7
+Q3: 23.3
+MaximumValue: 61.9
+
